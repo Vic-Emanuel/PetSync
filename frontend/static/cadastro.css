@@ -1,0 +1,103 @@
+/* 1. VARIÁVEIS 
+   :root significa "A raiz de tudo". Aqui guardamos as cores com nomes fáceis.
+   Para alteração das cores principais do site, você só muda a cor aqui e o site inteiro atualiza sozinho! */
+:root {
+    --cor-fundo: #f4f7f6; /* Um cinza claro, quase gelo */
+    --cor-primaria: #10b981; /*Verde principal */
+    --cor-primaria-hover: #059669; /* Um verde um pouco mais escuro para quando passar o mouse */
+    --cor-texto: #333333; /* Um preto suave, que cansa menos a vista que o preto absoluto */
+    --cor-borda: #d1d5db; /* Cor cinza para a linha em volta das caixinhas */
+}
+
+/* 2. RESET GERAL
+   O asterisco (*) significa "Pegue TODOS os elementos do site inteiro".
+   Por padrão, os navegadores colocam umas margens invisíveis. Aqui eu zerei tudo para começar com uma tela limpa. */
+* {
+    margin: 0; /* Zera os espaços do lado de fora das caixas */
+    padding: 0; /* Zera os espaços do lado de dentro das caixas */
+    box-sizing: border-box; /* Impede que a caixa cresça e quebre o site quando colocamos bordas nela */
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; /* Define a fonte (letra) do site inteiro */
+}
+
+/* 3. PINTANDO A PAREDE DO FUNDO
+   Peguei a tag <body> (que engloba a tela inteira) e apliquei o estilo. */
+body {
+    background-color: var(--cor-fundo); /* Pinta o fundo puxando o cinza lá das variáveis */
+    color: var(--cor-texto); /* Pinta todas as letras puxando o preto suave */
+}
+
+/* 4. CENTRALIZAR TUDO
+   No CSS, o ponto (.) antes da palavra significa "Procure a class com esse nome". */
+.container-cadastro {
+    display: flex; /* Ativa o modo Flexbox (uma ferramenta moderna para alinhar coisas) */
+    justify-content: center; /* Alinha o cartão no meio da tela na Horizontal (Esquerda <-> Direita) */
+    align-items: center; /* Alinha o cartão no meio da tela na Vertical (Cima <-> Baixo) */
+    min-height: 100vh; /* "vh" significa Viewport Height. 100vh = Ocupar 100% da altura do seu monitor */
+    padding: 20px; /* Dá uma folguinha nas bordas para o cartão não colar na tela do celular */
+}
+
+/* 5. DESENHANDO O CARTÃO BRANCO DO FORMULÁRIO */
+.card-formulario {
+    background-color: #ffffff; /* Pinta a caixa de branco puro */
+    width: 100%; /* Permite que o cartão cresça para preencher a tela... */
+    max-width: 450px; /* mas impõe um limite, não pode passar de 450 pixels de largura (evita que fique esticado num monitor gigante) */
+    padding: 40px; /* Dá um espaço interno de 40 pixels (tipo um estofamento) para os textos não colarem na beirada da caixa branca */
+    border-radius: 12px; /* Arredonda as quinas da caixa branca, deixando o visual moderno */
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05); /* Cria aquela sombrinha cinza fraca atrás do cartão, dando um efeito 3D */
+}
+
+/* 6. ALINHANDO OS TÍTULOS */
+.cabecalho-form {
+    text-align: center; /* Joga os textos do título para o meio (centralizado) */
+    margin-bottom: 30px; /* Empurra os campos de texto 30 pixels para baixo, criando uma margem */
+}
+
+/* 7. AS CAIXINHAS DE DIGITAR (INPUTS) */
+.grupo-input {
+    margin-bottom: 20px; /* Cria um espaço de 20 pixels entre a caixa de Nome e a caixa de Email, por exemplo */
+}
+
+.grupo-input label {
+    display: block; /* Faz o texto "Nome" pular de linha e ficar exatamente em cima da caixinha, e não do lado dela */
+    margin-bottom: 6px; /* Descola o texto levemente da caixinha de digitar */
+    font-weight: 600; /* Deixa a letra um pouco mais grossa (um meio Termo para o Negrito) */
+}
+
+.grupo-input input {
+    width: 100%; /* Faz a caixa de digitar esticar de ponta a ponta dentro do cartão branco */
+    padding: 12px; /* Deixa a caixa de digitar mais larga, mais fácil de clicar */
+    border: 1px solid var(--cor-borda); /* Cria a linha cinza ao redor da caixa */
+    border-radius: 8px; /* Arredonda a caixa de digitar */
+    transition: all 0.3s ease; /* Faz as cores mudarem de forma suave, sem ser um piscar agressivo */
+}
+
+/* O estado ":focus" é ativado NO EXATO SEGUNDO em que o usuário clica com o mouse dentro da caixa para digitar */
+.grupo-input input:focus {
+    outline: none; /* Remove aquela borda preta feia padrão do navegador antigo */
+    border-color: var(--cor-primaria); /* Pinta a linha da caixa de verde, a cor primária do site */
+    box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.2); /* Cria uma "aura" verde transparente em volta da caixa clicada */
+}
+
+/* 8. O BOTÃO PRINCIPAL */
+.btn-principal {
+    width: 100%; /* Botão esticado de ponta a ponta */
+    background-color: var(--cor-primaria); /* Pinta o botão com o verde */
+    color: white; /* Cor da letra "Criar Conta" fica branca */
+    border: none; /* Tira qualquer borda do botão */
+    padding: 14px; /* Deixa o botão alto e fácil de clicar no celular */
+    font-size: 1rem; /* Tamanho da letra */
+    font-weight: bold; /* Letra em Negrito */
+    border-radius: 8px; /* Arredonda as pontas do botão */
+    cursor: pointer; /* Transforma a setinha do mouse na "Mãozinha de clicar" quando passa por cima */
+    transition: background-color 0.3s; /* Faz a cor mudar suavemente em 0.3 segundos */
+}
+
+/* O estado ":hover" acontece quando o usuário só PAIRA o mouse por cima do botão, sem clicar */
+.btn-principal:hover {
+    background-color: var(--cor-primaria-hover); /* Troca para o verde mais escuro, indicando que é clicável */
+}
+
+/* Essa classe vai ser usada pelo Back-end depois para esconder as mensagens de erro na tela */
+.escondido { 
+    display: none; /* Significa: Destrua isso, faça sumir da tela completamente! */
+}

@@ -1,0 +1,72 @@
+<!--1. Avisa ao navegador que estou usando a versão mais moderna do HTML (HTML5)-->
+<!DOCTYPE html>
+<!--2. Aqui começa o documento, o idioma é Português do Brasil (pt-BR)-->
+<html lang="pt-BR">
+<!--3. O cabeçalho. Tudo que fica aqui dentro o usuário NÃO vê na tela. São as configurações.-->
+<head>
+    <!--4. Garante que acentos como "ç" ou "ã" vão aparecer corretamente sem quebrar as letras-->
+    <meta charset="UTF-8">
+    <!--5. Avisa que o site deve se adaptar ao tamanho da tela (para ficar responsivo no celular)-->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!--# 6. É o título que aparece lá na aba do navegador, na parte de cima da janela-->
+    <title>PetSync - Cadastro de Tutor</title>
+    <!--7. O "cabo" conectando esse esqueleto HTML ao nosso arquivo de beleza (o CSS)-->
+    <link rel="stylesheet" href="{{ url_for('static', filename='cadastro.css') }}">
+</head>
+
+<!--8. O corpo do site. TUDO que você colocar aqui dentro é o que vai aparecer na tela do usuário-->
+<body>
+    <!--9. A caixa principal que vai centralizar todo o conteúdo no meio da tela-->
+    <main class="container-cadastro">
+        <!--10. O cartão branco sólido onde o formulário vai ficar-->
+        <div class="card-formulario">
+            <!--11. Uma divisão apenas para agrupar o título e o subtítulo-->
+            <div class="cabecalho-form">
+                <!--12. h1 = Título Principal (Heading 1). A maior letra da tela.-->
+                <h1>Bem-vindo ao PetSync</h1>
+                <!--13. p = Parágrafo. Um texto comum explicativo.-->
+                <p>Crie sua conta para agendar consultas do seu pet.</p>
+            </div>
+            <!--14. O Formulário. É a área que vai agrupar todas as caixas de digitar-->
+            <form id="formCadastro">
+                <!--15. Caixa para agrupar o nome e a etiqueta dele-->
+                <div class="grupo-input">
+                    <!--16. Etiqueta de texto que fica em cima da caixinha-->
+                    <label for="nome">Nome Completo</label>
+                    <!--17. input = A caixinha em si. type="text" = aceita texto livre. required = impede de enviar vazio-->
+                    <input type="text" id="nome" name="nome" placeholder="Ex: João da Silva" required>
+                </div>
+
+                <!--18. Caixa para agrupar o Email-->
+                <div class="grupo-input">
+                    <label for="email">E-mail</label>
+                    <!--19. type="email" = obriga o usuário a digitar um formato válido com "@" e ".com"-->
+                    <input type="email" id="email" name="email" placeholder="joao@email.com" required>
+                </div>
+
+                <!--20. Caixa para agrupar o Telefone-->
+                <div class="grupo-input">
+                    <label for="telefone">Telefone</label>
+                    <!--21. type="tel" = avisa ao celular do usuário para abrir o teclado de números quando ele clicar-->
+                    <input type="tel" id="telefone" name="telefone" placeholder="(11) 99999-9999" required>
+                </div>
+
+                <!--22. Caixa para agrupar a Senha-->
+                <div class="grupo-input">
+                    <label for="senha">Senha</label>
+                    <!--23. type="password" = faz as letras virarem pontos de segurança-->
+                    <input type="password" id="senha" name="senha" placeholder="Crie uma senha forte" required>
+                </div>
+
+                <!--24. Uma caixa vazia propositalmente, ficará invisível até o Back-end mandar uma mensagem-->
+                <div id="mensagem-alerta" class="escondido"></div>
+
+                <!--25. O botão clicável. type="submit" avisa que a função final dele é enviar o formulário-->
+                <button type="submit" class="btn-principal">Criar Conta</button>
+            </form>
+        </div>
+    </main>
+    <!--26. Conectar HTML com o JS-->
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>
