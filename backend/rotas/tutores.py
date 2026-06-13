@@ -51,3 +51,38 @@ def api_cadastro_tutor():
     #Salvando no banco de dados
     colecao_tutores.insert_one(novo_tutor)
     return jsonify({"mensagem": "Tutor cadastrado com sucesso!"}), 201 #Código de HTML de Sucesso
+
+@tutores_bp.route('/api/login', methods=['POST'])
+def api_login_tutor():  
+    db = get_db()
+    if db is None:
+        return jsonify({"erro": "Erro interno de conexão com o banco de dados"}), 500 #Erro 500 é o código de erro interno
+    
+    #Pega os dados que o usuário colocou na tela
+    dados = request.get_json()
+    email = dados.get('email')
+    senha_plana = dados.get('senha')
+
+    if not senha_plana or not email:
+        return jsonify({"erro": "E-mail e senha são obrigatórios!"}), 400
+
+    colecao_tutores = db['tutores']
+
+    #Busca no banco de dados alguém com o email digitado na caixa
+    tutor = colecao_tutores.find_one({'email': email})
+
+    #Se o email não existir ou estiver incorreto
+    if not tutor:
+        return jsonify({"erro": "E-mail ou senha incorretos!"}), 401
+    
+    #Medida de segurança na senha, puxa a senha com hash do db
+    senha_valida = bcrypt.checkpw(senha_plana.encode('utf-8'), tutor['senha'])
+
+    if senha_valida:
+        #Projeto futuro: Token de sessão (JWT)
+        return jsonify({"mensagem": "Login realizado com sucesso!"}), 200
+    else:
+        #Se a senha estiver incorreta, erro 401 (não autorizado)
+        return jsonify({"erro": "E-mail ou senha incorretos!"}), 401
+
+    
