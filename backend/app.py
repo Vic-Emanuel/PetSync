@@ -20,11 +20,18 @@ db = get_db()
 #Conectar blueprint nas rotas do servidor principal (app.py)
 app.register_blueprint(tutores_bp)
 
+
 #ROTAS VISUAIS (Tela do navegador)
 @app.route('/cadastro', methods=['GET'])
 def pagina_cadastro():
     """Rota que apenas desenha o HTML na tela do navegador"""
     return render_template('cadastro.html')
+
+@app.route('/login', methods=['GET'])
+def pagina_login():
+    """Rota que apenas desenha o HTML de login na tela"""
+    return render_template('login.html')
+
 
 #MOTOR DO SERVIDOR
 if __name__ == '__main__':

@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PetSync - Login de Tutor</title>
+    <!--Mesmo padrão do css-->
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+    <main class="container-cadastro">
+        <div class="card-formulario">
+            <div class="cabecalho-form">
+                <h1>Entrar no PetSync</h1>
+                <p>Acesse sua conta para gerenciar seus pets.</p>
+            </div>
+
+            <!--Formulário exclusivo do Login-->
+            <form id="formLogin">
+                <div class="grupo-input">
+                    <!--Para o login, apenas é necessário o login e senha-->
+                    <label for="email">E-mail</label>
+                    <input type="email" id="email" name="email" placeholder="joao@email.com" required>
+                </div>
+
+                <div class="grupo-input">
+                    <label for="senha">Senha</label>
+                    <input type="password" id="senha" name="senha" placeholder="Digite sua senha" required>
+                </div>
+                <!--Caixa para erros (Invisivel)-->
+                <div id="mensagem-alerta" class="escondido"></div>
+                <button type="submit" class="btn-principal">Entrar</button>
+                <!--Link caso o usuário não possua login-->
+                <div style="text-align: center; margin-top: 15px;">
+                    <a href="/cadastro" style="color: var(--cor-primaria); text-decoration: none;">Ainda não tem conta? Cadastre-se</a>
+                </div>
+            </form>
+    </main>
+    <script src="{{ url_for('static', filename='script-login.js') }}"></script>
+</body>
